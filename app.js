@@ -297,6 +297,7 @@ app.get("/fitness", function(req, res) {
   res.render("fitness");
 });
 
+// calculate the score of medical fitness by using standard medical parameters
 app.post("/fitness", function(req, res){
   const name = req.body.name;
   const bmi = parseInt(req.body.bmi);
@@ -310,7 +311,8 @@ app.post("/fitness", function(req, res){
   const pulse = parseInt(req.body.pulse);
   const temp = parseInt(req.body.temp);
   const score = bmi+workout+yoga+heartbeat+bp+medication+covid+lungs+pulse+temp;
-  console.log(score);
+
+  //console.log(score);
 
   res.render("fitness-result", {
     score: score
@@ -324,6 +326,7 @@ if(port == null || port == ""){
   port = 3000;
 }
 
+// listen to the port, if on localhost then 3000 otherwise if o heroku use the port provided by them
 app.listen(port, function() {
   console.log("Server has started successfully");
 });
